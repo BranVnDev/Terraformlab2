@@ -4,8 +4,8 @@ Configuración de Terraform para crear un grupo de recursos y una Virtual Networ
 
 ## Recursos creados
 
-- Grupo de recursos: `rg-integradora-dev-mexicocentral-001`
-- Virtual Network: `vnet-integradora-dev-centralus-001`
+- Grupo de recursos: `rg-terraformlab2-dev-mexicocentral-001`
+- Virtual Network: `vnet-terraformlab2-dev-centralus-001`
 - Espacio de direcciones: `10.0.0.0/16`
 
 El grupo de recursos conserva `mexicocentral` como ubicación. La suscripción `Azure for Students` solo permite ciertas regiones para redes virtuales, por eso la VNet se creó en `centralus`.
@@ -42,7 +42,7 @@ terraform validate
 az account show
 terraform plan
 terraform apply -auto-approve
-az resource list --resource-group rg-integradora-dev-mexicocentral-001 --query "[].{name:name,type:type,location:location}" --output table
+az resource list --resource-group rg-terraformlab2-dev-mexicocentral-001 --query "[].{name:name,type:type,location:location}" --output table
 ```
 
 ## Resultado esperado

@@ -1,33 +1,43 @@
 variable "project_name" {
-  description = "Nombre del proyecto o aplicación"
+  description = "The name of the project."
   type        = string
+
+  validation {
+    condition     = length(var.project_name) >= 5 && length(var.project_name) <= 20
+    error_message = "The project name must be between 5 and 20 characters."
+  }
 }
 
 variable "environment" {
-  description = "Entorno donde se desplegarán los recursos (dev, test, prod)"
+  description = "The environment for the deployment (e.g., dev, qa, prod)."
   type        = string
+
+  validation {
+    condition     = contains(["dev", "qa", "prod"], var.environment)
+    error_message = "The environment must be one of: dev, qa, prod."
+  }
 }
 
 variable "location" {
-  description = "Región de Azure donde se desplegarán los recursos"
+  description = "The Azure region where resources will be deployed."
   type        = string
   default     = "mexicocentral"
 }
 
 variable "vnet_location" {
-  description = "Región de Azure permitida para la Virtual Network"
+  description = "Azure region allowed for the virtual network by the subscription policy."
   type        = string
   default     = "eastus"
 }
 
 variable "vnet_address_space" {
-  description = "Espacio de direcciones CIDR asignado a la Virtual Network"
+  description = "The address space for the virtual network."
   type        = list(string)
   default     = ["10.0.0.0/16"]
 }
 
 variable "tags" {
-  description = "Etiquetas para los recursos de Azure"
+  description = "A map of tags to assign to resources."
   type        = map(string)
   default     = {}
 }
